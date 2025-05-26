@@ -59,11 +59,13 @@ public class CardManager : MonoBehaviour
         if (handCards.Count >= 6) //손패가 이미 6장 이상이면 드로우 하지 않음
         {
             Debug.Log("손패가 가득 찼습니다. ! (최대 6장");
+            ToastMessage.Instance.ShowMessage("손패가 가득 찼습니다! (최대 6장)", ToastMessage.MessageType.Warning);
             return;
         }
         if (deckCards.Count == 0)
         {
             Debug.Log("덱에 카드가 없습니다.");
+            ToastMessage.Instance.ShowMessage("덱에 카드가 없습니다.", ToastMessage.MessageType.Warning);
             return;
         }
         CardData cardData = deckCards[0];
@@ -89,6 +91,7 @@ public class CardManager : MonoBehaviour
         ArrangeHand();
 
         Debug.Log("카드를 드로우 했습니다. : " + cardData.cardName + " (손패 : " + handCards.Count + "/76)");
+        ToastMessage.Instance.ShowMessage("카드를 드로우했습니다. : " + cardData.cardName + "(손패 :" + handCards.Count + "/6)", ToastMessage.MessageType.info);
     }
     public void ArrangeHand() // 손에있는 카드 재정렬
     {
